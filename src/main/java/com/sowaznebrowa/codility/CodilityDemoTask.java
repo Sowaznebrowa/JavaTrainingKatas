@@ -1,4 +1,4 @@
-package com.sowaznebrowa;
+package com.sowaznebrowa.codility;
 
 import java.util.Arrays;
 
@@ -20,32 +20,35 @@ that, given an array A of N integers, returns the smallest positive integer (gre
 
         N is an integer within the range [1..100,000];
         each element of array A is an integer within the range [−1,000,000..1,000,000].*/
-public class Dynatrace {
+public class CodilityDemoTask {
 
     public static void displayExample() {
-        System.out.println(solution(new int[]{3, 1, 2, 4, 1, 6}));
+        System.out.println(solution(new int[]{5}));
     }
 
-    public static int solution(int[] A) {
+    private static int solution(int[] A) {
         // write your code in Java SE 8
-        int filteredSortedValues = Arrays.stream(A)
+        int[] filteredSortedValues = Arrays.stream(A)
                 .filter(value -> value > 0)
-                .distinct()
                 .sorted()
-                .reduce((a, b) -> {
-                    if (a != b-1) return a+1;
-                    return b;
-                }).orElse(1);
+                .toArray();
 
-        return filteredSortedValues;
+        if (filteredSortedValues.length == 0){
+            return 1;
+        }
 
-
-
-        /*for (int i = 1; i < filteredSortedValues.length; ++i) {
-            if (filteredSortedValues[i - 1] != i) {
+        int j = 0;
+        for (int i = 0; i < filteredSortedValues.length; ++i) {
+            if (filteredSortedValues[i] != i-1) {
                 return i;
             }
-        }*/
+        }
+
+        if (filteredSortedValues.length == A.length){
+            return filteredSortedValues.length + 1;
+        }
+
+        return filteredSortedValues.length;
 
     }
 }

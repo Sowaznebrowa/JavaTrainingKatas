@@ -21,7 +21,7 @@ public class ProcessStringToOrderedMap {
         Map<Character, List<String>> map = getResult("zword;aword;bword;dword;anotherword;Osomeword;;");
         System.out.println(map);
     }
-    private static Map<Character, List<String>> getResult(String data) {
+    static Map<Character, List<String>> getResult(String data) {
         String[] words = data.split(";");
         Map<Character, List<String>> map = new TreeMap<>();
 
